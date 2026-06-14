@@ -1,0 +1,16 @@
+#!/bin/sh
+
+echo "Loading ACBLinux......"
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t devtmpfs none /dev
+mkdir -p /dev/pts
+mount -t devpts none /dev/pts
+mount -t tmpfs none /tmp
+
+echo "ACBLinux Ready"
+
+exec 0</dev/console 1>/dev/console 2>/dev/console
+
+/bin/getty -L console 0 linux
